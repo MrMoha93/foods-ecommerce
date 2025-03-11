@@ -1,6 +1,11 @@
+import LikeButton from "./common/LikeButton";
+
 export default function ProductCard() {
   return (
-    <div className="border shadow shadow-gray-200 border-gray-200 w-full rounded-lg overflow-hidden ">
+    <div className="relative border shadow shadow-gray-200 border-gray-200 w-full rounded-lg overflow-hidden ">
+      <span className="absolute top-2 left-2">
+        <LikeButton />
+      </span>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg"
         alt="product image"
