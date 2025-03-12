@@ -1,7 +1,8 @@
 import { useState } from "react";
 import LikeButton from "./common/LikeButton";
+import { Food } from "../types";
 
-export default function ProductCard() {
+export default function ProductCard({ imageUrl, name, price }: Food) {
   const [quantity, setQuantity] = useState(0);
 
   return (
@@ -9,14 +10,13 @@ export default function ProductCard() {
       <span className="absolute top-2 left-2">
         <LikeButton />
       </span>
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Kiwi_%28Actinidia_chinensis%29_1_Luc_Viatour.jpg"
-        alt="product image"
-      />
+      <div className="p-4">
+        <img className="h-40 object-contain" src={imageUrl} alt={name} />
+      </div>
       <div className="bg-gray-50 p-2 text-sm">
         <div className="flex justify-between">
-          <span className="font-medium">Kiwi Fruit</span>
-          <span className="text-gray-400">160 kr </span>
+          <span className="font-medium">{name}</span>
+          <span className="text-gray-400">{price} kr </span>
         </div>
         {quantity === 0 ? (
           <div className="text-center mt-2">
