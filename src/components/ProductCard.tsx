@@ -1,9 +1,21 @@
 import { useState } from "react";
 import LikeButton from "./common/LikeButton";
 import { Food } from "../types";
+import { useCart } from "../context/cartContext";
 
 export default function ProductCard({ imageUrl, name, price }: Food) {
+  const { totalQuantity, setTotalQuantity } = useCart();
   const [quantity, setQuantity] = useState(0);
+
+  function handleIncrement() {
+    setQuantity(quantity + 1);
+    setTotalQuantity(totalQuantity + 1);
+  }
+
+  function handleDicrement() {
+    setQuantity(quantity - 1);
+    setTotalQuantity(totalQuantity - 1);
+  }
 
   return (
     <div className="relative border shadow shadow-gray-200 border-gray-200 w-full rounded-lg overflow-hidden ">
@@ -21,7 +33,7 @@ export default function ProductCard({ imageUrl, name, price }: Food) {
         {quantity === 0 ? (
           <div className="text-center mt-2">
             <button
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={handleIncrement}
               className="text-xs bg-orange-400 text-white py-1 px-3.5 rounded-full"
             >
               KÖP
@@ -30,14 +42,14 @@ export default function ProductCard({ imageUrl, name, price }: Food) {
         ) : (
           <div className="flex justify-between mt-2">
             <button
-              onClick={() => setQuantity(quantity - 1)}
+              onClick={handleDicrement}
               className="flex items-center justify-center h-6 w-10 text-lg text-orange-500 bg-orange-100 rounded-full"
             >
               -
             </button>
             <span className="leading-6">{quantity}</span>
             <button
-              onClick={() => setQuantity(quantity + 1)}
+              onClick={handleIncrement}
               className="flex items-center justify-center h-6 w-10 text-lg text-orange-500 bg-orange-100 rounded-full"
             >
               +
