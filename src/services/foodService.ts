@@ -1,3 +1,4 @@
+import { BASE_URL } from "../config";
 import { Food } from "../types";
 import axios from "axios";
 
@@ -10,11 +11,11 @@ interface FoodFormData {
   imageUrl: string;
 }
 
-const API_BASEURL = "http://localhost:5589/api/foods";
+const API_ENDPOINT = `${BASE_URL}/api/foods`;
 
 function foodUrl(id?: string) {
-  if (id) return `${API_BASEURL}/${id}`;
-  return API_BASEURL;
+  if (id) return `${API_ENDPOINT}/${id}`;
+  return API_ENDPOINT;
 }
 
 export function getFoods() {
