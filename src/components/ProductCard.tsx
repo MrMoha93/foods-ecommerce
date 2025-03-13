@@ -1,6 +1,6 @@
 import LikeButton from "./common/LikeButton";
 import { Food } from "../types";
-import { useCart } from "../context/cartContext";
+import { useCart } from "../context/CartContext";
 
 export default function ProductCard(food: Food) {
   const cart = useCart();
