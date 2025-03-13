@@ -3,18 +3,18 @@ import LikeButton from "./common/LikeButton";
 import { Food } from "../types";
 import { useCart } from "../context/cartContext";
 
-export default function ProductCard({ imageUrl, name, price }: Food) {
-  const { totalQuantity, setTotalQuantity } = useCart();
+export default function ProductCard(food: Food) {
+  const cart = useCart();
   const [quantity, setQuantity] = useState(0);
 
   function handleIncrement() {
     setQuantity(quantity + 1);
-    setTotalQuantity(totalQuantity + 1);
+    cart.add(food);
   }
 
   function handleDicrement() {
     setQuantity(quantity - 1);
-    setTotalQuantity(totalQuantity - 1);
+    cart.remove(food);
   }
 
   return (
@@ -23,12 +23,16 @@ export default function ProductCard({ imageUrl, name, price }: Food) {
         <LikeButton />
       </span>
       <div className="p-4">
-        <img className="h-40 object-contain" src={imageUrl} alt={name} />
+        <img
+          className="h-40 object-contain"
+          src={food.imageUrl}
+          alt={food.name}
+        />
       </div>
       <div className="bg-gray-50 p-2 text-sm">
         <div className="flex justify-between">
-          <span className="font-medium">{name}</span>
-          <span className="text-gray-400">{price} kr </span>
+          <span className="font-medium">{food.name}</span>
+          <span className="text-gray-400">{food.price} kr </span>
         </div>
         {quantity === 0 ? (
           <div className="text-center mt-2">
